@@ -1,0 +1,89 @@
+import unittest
+from appium import webdriver
+from appium.webdriver.common.appiumby import AppiumBy
+
+capabilities = dict(
+    platformName='Android',
+    automationName='uiautomator2',
+    deviceName='Android',
+    appPackage='com.truecaller',
+    appActivity='com.truecaller.ui.TruecallerInit',
+    language='en',
+    locale='US'
+)
+
+appium_server_url = 'http://localhost:4723'
+
+
+class TestAppium(unittest.TestCase):
+    def setUp(self) -> None:
+        self.driver = webdriver.Remote(appium_server_url, capabilities)
+
+    def tearDown(self) -> None:
+        if self.driver:
+            self.driver.quit()
+
+    def test_truecaller(self) -> None:
+        self.driver.implicitly_wait(4)
+        el1 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/nextButton")
+        el1.click()
+        self.driver.implicitly_wait(4)
+        el2 = self.driver.find_element(by=AppiumBy.ID, value="android:id/button1")
+        el2.click()
+        self.driver.implicitly_wait(4)
+        el3 = self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_allow_button")
+        el3.click()
+        self.driver.implicitly_wait(4)
+        el4 = self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_allow_button")
+        el4.click()
+        self.driver.implicitly_wait(4)
+        el5 = self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_allow_button")
+        el5.click()
+        self.driver.implicitly_wait(4)
+        el6 = self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_deny_button")
+        el6.click()
+        self.driver.implicitly_wait(4)
+        el7 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/nextButton")
+        el7.click()
+        self.driver.implicitly_wait(4)
+        if self.driver.find_element(by=AppiumBy.ID, value="android:id/button1"):
+            el8 = self.driver.find_element(by=AppiumBy.ID, value="android:id/button1")
+            el8.click()
+            self.driver.implicitly_wait(4)
+        # el9 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/countryText")
+        # el9.click()
+        # self.driver.implicitly_wait(4)
+        # el9 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/nextButton")
+        # el9.click()
+        # el10 = self.driver.find_element(by=AppiumBy.ID, value="com.android.permissioncontroller:id/permission_allow_button")
+        # el10.click()
+        # el11 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/nextButton")
+        # el11.click()
+        # el12 = self.driver.find_element(by=AppiumBy.ID, value="android:id/button1")
+        # el12.click()
+        el13 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/countryText")
+        el13.click()
+        el14 = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Search")
+        el14.click()
+        el15 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/search_src_text")
+        el15.send_keys("India")
+        el16 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/search_src_text")
+        el16.click()
+        el17 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/countriesRecyclerView")
+        el17.click()
+        el18 = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Clear query")
+        el18.click()
+        el19 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/search_src_text")
+        el19.send_keys("Sweden")
+        el20 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/countryText")
+        el20.click()
+        el21 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/phoneNumberEditText")
+        el21.send_keys("7689000000")
+        el22 = self.driver.find_element(by=AppiumBy.ID, value="com.truecaller:id/nextButton")
+        el22.click()
+        el23 = self.driver.find_element(by=AppiumBy.ID, value="android:id/button2")
+        el23.click()
+
+
+if __name__ == '__main__':
+    unittest.main()
